@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
-const API = 'https://hn.algolia.com/api/v1/search?query=';
-const DEFAULT_QUERY = 'redux';
+const API = 'http://35.180.182.8/Search?keywords=athens&language=en&limit=10';
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hits: [],
+      entries: [],
+      isLoading: false,
     };
   }
   componentDidMount() {
-    fetch(API + DEFAULT_QUERY)
+     this.setState({ isLoading: true });
+    fetch(API)
       .then(response => response.json())
-      .then(data => this.setState({ hits: data.hits }));
+      .then(data => this.setState({ entries: data.entries, isLoading: false }));
   }
   render() {
-    const { hits } = this.state;
+    const { entries, isLoading } = this.state;
+     if (isLoading) {
+       return <p>Loading ...</p>;
+     }
     return (
       <ul>
-        {hits.map(hit =>
-          <li key={hit.objectID}>
-            <a href={hit.url}>{hit.title}</a>
+        {entries.map(entry =>
+          <li key={entry.name}>
+{entry.name}
           </li>
         )}
       </ul>
