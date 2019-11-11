@@ -50,7 +50,7 @@ othername() {
     return (
       <div>
 
-<input type="text" id="userInput" className="form-control"  name="title" />
+<input type="text" id="userInput" className="form-control" onKeyUp={this.othername} name="title" />
  <input  type="submit" onClick={this.othername}/>
 
       <h1>Hello</h1>
