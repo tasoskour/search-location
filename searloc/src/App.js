@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-const API = 'http://35.180.182.8/Search?keywords=athens&language=en&limit=10';
+var keyword='jamaica'
+const API = 'http://35.180.182.8/Search?keywords='+keyword+'&language=en&limit=100';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
+       this.onSubmit = this.onSubmit.bind(this);
     this.state = {
       entries: [],
       isLoading: false,
@@ -16,6 +19,29 @@ class App extends Component {
       .then(response => response.json())
       .then(data => this.setState({ entries: data.entries, isLoading: false }));
   }
+
+  onSubmit(e) {
+       e.preventDefault();
+       var title = this.title;
+//English
+      if (/^[a-zA-Z]+$/.test(title)) {
+       console.log(/^[a-zA-Z]+$/.test(title));
+     }
+//Greek
+   else if(/^[A-Za-z\u0391-\u03C9]*$/.test(title))
+   {
+   console.log(/^[a-zA-Z]+$/.test(title));
+ }
+        }
+
+othername() {
+           var input = document.getElementById("userInput").value;
+
+           keyword=input
+        alert(keyword);
+       }
+
+
   render() {
     const { entries, isLoading } = this.state;
      if (isLoading) {
@@ -23,17 +49,19 @@ class App extends Component {
      }
     return (
       <div>
-        <form className="search-form">
-         <input type="search" value="" placeholder="Search" className="search-input" />
-         <button type="submit" className="search-button"/>
-         </form>
+
+<input type="text" id="userInput" className="form-control"  name="title" />
+ <input  type="submit" onClick={this.othername}/>
+
+      <h1>Hello</h1>
       <ul>
         {entries.map(entry =>
           <li key={entry.name}>
-{entry.name}
+              {entry.name}
           </li>
         )}
       </ul>
+
     </div>
     );
   }
