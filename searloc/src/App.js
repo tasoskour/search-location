@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css';
 const API = 'http://35.180.182.8/Search?keywords=athens&language=en&limit=10';
 
 class App extends Component {
@@ -21,6 +22,11 @@ class App extends Component {
        return <p>Loading ...</p>;
      }
     return (
+      <div>
+        <form className="search-form">
+         <input type="search" value="" placeholder="Search" className="search-input" />
+         <button type="submit" className="search-button"/>
+         </form>
       <ul>
         {entries.map(entry =>
           <li key={entry.name}>
@@ -28,6 +34,7 @@ class App extends Component {
           </li>
         )}
       </ul>
+    </div>
     );
   }
 }
