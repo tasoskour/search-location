@@ -6,46 +6,43 @@ import React, { Component } from 'react';
 class Fetch extends Component {
   constructor(props) {
     super(props);
-       this.onSubmit = this.onSubmit.bind(this);
+
     this.state = {
       entries: [],
       isLoading: false,
+      keyword: props.keyword
     };
+this.getKeyword=this.getKeyword.bind(this)
+
   }
 
-  componentDidMount() {
-    var keyword="Athens"
-    const API = 'http://35.180.182.8/Search?keywords='+keyword+'&language=en&limit=100';
-     this.setState({ isLoading: true });
+  getKeyword(keyword){
+    var API = 'http://35.180.182.8/Search?keywords='+keyword+'&language=en&limit=100';
+console.log(API)
     fetch(API)
       .then(response => response.json())
       .then(data => this.setState({ entries: data.entries, isLoading: false }));
+
   }
 
-  onSubmit(e) {
-       e.preventDefault();
-       var title = this.title;
-//English
-      if (/^[a-zA-Z]+$/.test(title)) {
-       console.log(/^[a-zA-Z]+$/.test(title));
-     }
-//Greek
-   else if(/^[A-Za-z\u0391-\u03C9]*$/.test(title))
-   {
-   console.log(/^[a-zA-Z]+$/.test(title));
- }
-        }
+componentDidMount() {
 
+  this.getKeyword(this.state.keyword)
 
-
+}
 
   render() {
-    const { entries, isLoading } = this.state;
+
+    var { entries, isLoading } = this.state;
      if (isLoading) {
        return <p>Loading ...</p>;
      }
+
     return (
       <div>
+
+<h1>{this.state.keyword}</h1>
+
       <ul>
         {entries.map(entry =>
           <li key={entry.name}>

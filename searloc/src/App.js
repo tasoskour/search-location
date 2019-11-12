@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Keyword from "./components/Keyword"
 
+
 class App extends Component {
 
 
@@ -9,8 +10,10 @@ class App extends Component {
 
     return (
 
-
+<div>
     <Keyword />
+
+</div>
 
     );
   }
