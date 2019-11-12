@@ -5,7 +5,7 @@ class Keyword extends React.Component{
 constructor(){
   super()
   this.state={
-keyword:"Athens"
+keyword:"Hong Kong"
            }
             this.getKeyword = this.getKeyword.bind(this);
              }

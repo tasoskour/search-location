@@ -17,7 +17,8 @@ this.getKeyword=this.getKeyword.bind(this)
   }
 
   getKeyword(keyword){
-    var API = 'http://35.180.182.8/Search?keywords='+keyword+'&language=en&limit=100';
+//this.setState({ keyword: "Athens"})
+    var API = 'http://35.180.182.8/Search?keywords='+keyword+'&language=en&limit=5';
 console.log(API)
     fetch(API)
       .then(response => response.json())
@@ -25,10 +26,11 @@ console.log(API)
 
   }
 
-componentDidMount() {
-
-  this.getKeyword(this.state.keyword)
-
+componentDidUpdate(prevProps)  {
+if(prevProps.keyword!==this.props.keyword){
+  console.log("P:"+prevProps.keyword)
+  this.getKeyword(prevProps.keyword)
+}
 }
 
   render() {
@@ -40,6 +42,8 @@ componentDidMount() {
 
     return (
       <div>
+
+
 
 <h1>{this.state.keyword}</h1>
 
