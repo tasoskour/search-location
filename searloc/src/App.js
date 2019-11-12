@@ -1,21 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import Keyword from "./components/Keyword"
 
 
-class App extends Component {
+function App (){
 
-
-  render() {
 
     return (
-
 <div>
     <Keyword />
-
 </div>
-
     );
   }
-}
+
 export default App;
