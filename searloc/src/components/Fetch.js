@@ -36,16 +36,17 @@ render() {
        return <p>Loading ...</p>;
      }
     return (
-      <div>
+      <div >
+        <form>
       <ul>
         {entries.map(entry =>
 
-          <li key={entry.name} onClick={()=>console.log(entry.name)}>
+          <li key={entry.name} onClick={()=>document.getElementById("userInput").value=entry.name}>
             {entry.name}
           </li>
         )}
       </ul>
-
+</form>
     </div>
     );
   }

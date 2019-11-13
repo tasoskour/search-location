@@ -1,14 +1,15 @@
 import React from 'react';
 import './App.css';
 import Keyword from "./components/Keyword"
-
+import Submit from "./components/Submit"
 
 function App (){
 
 
     return (
-<div>
+<div className="div">
     <Keyword />
+  
 </div>
     );
   }
