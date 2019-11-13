@@ -34,6 +34,7 @@ clicked(){
 var URL="https://www.google.com/search?q="+text
 window.open(URL);
 
+return false;
 }
 
 render(){
@@ -41,7 +42,7 @@ render(){
     <div>
   <form className="form" >
   <input type="text" id="userInput" onChange={this.getKeyword} autoComplete="off"/>
-<button onClick={this.clicked}>Submit</button>
+<button type="button" onClick={this.clicked}>Submit</button>
    </form>
   <Fetch keyword={this.state.keyword} language={this.state.language}/>
 </div>
