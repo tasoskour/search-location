@@ -1,17 +1,14 @@
 import React from 'react';
 import './App.css';
-import Keyword from "./components/Keyword"
-import Submit from "./components/Submit"
+import FormContainer from "./components/FormContainer"
 
 function App (){
 
 
     return (
 <div className="div">
-    <Keyword />
-  
+    <FormContainer />
 </div>
     );
   }
-
 export default App;
