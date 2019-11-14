@@ -1,7 +1,7 @@
 import React from 'react';
 
 function FormContainer(props){
-var count=1;
+
 
   return (
   <div>
@@ -12,11 +12,8 @@ var count=1;
 
 
 <ul id="ul" className="ulist">
-  {props.entries.map(entry =>{
-  {
-    count++
-    console.log(count)}
-  return(
+  {props.entries.map(entry =>
+  (
     <li id={entry.name} className="li" key={entry.name} onClick={()=>{
       document.getElementById("userInput").value=entry.name
   }}
@@ -26,7 +23,6 @@ onMouseOut={()=> { document.getElementById(entry.name).style.backgroundColor="wh
   >
       {entry.name}
     </li>)
-}
   )
 
 }
