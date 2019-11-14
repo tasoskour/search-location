@@ -8,11 +8,15 @@ class FormContainer extends Component {
       entries: [],
       isLoading: false,
       keyword:"",
-      language:" "
+      language:" ",
+      timeout:null
     };
     this.getEntries=this.getEntries.bind(this)
     this.getKeyword = this.getKeyword.bind(this);
     this.clicked=this.clicked.bind(this);
+    this.timeout=this.timeout.bind(this);
+    this.timeout2=this.timeout2.bind(this);
+
 }
 
 getEntries(props){
@@ -38,6 +42,7 @@ this.setState({ entries: [], isLoading: false })
   }
 
 getKeyword() {
+
         this.setState({keyword:document.getElementById("userInput").value});
 console.log("KEYWORD")
           if (/^[a-zA-Z]+$/.test(document.getElementById("userInput").value))
@@ -50,24 +55,42 @@ console.log("KEYWORD")
   this.setState({language:"el"})
   }
           console.log(this.state.language);
-  }
-  clicked(){
+          return false}
+
+timeout(){
+var timeout=setTimeout(
+  this.getKeyword,3000);
+  console.log("Timer:"+timeout)
+this.setState({timeout:timeout})
+  return false
+          }
+
+timeout2(){
+clearTimeout(this.state.timeout);
+
+            return false}
+
+clicked(){
     var text=document.getElementById("userInput").value
   var URL="https://www.google.com/search?q="+text
   window.open(URL);
 
   return false;
   }
+  componentDidMount(){
+    document.getElementById("button").disabled=true;
+  }
+
 componentDidUpdate(prevProps, prevState)  {
+  document.getElementById("button").removeAttribute("disabled");
   if(this.state.entries.length===0||this.state.keyword.length===1){
       document.getElementById("button").disabled=true;
     }
-  else {document.getElementById("button").disabled=false;
+  else {
+
     }
   if(prevState.keyword!==this.state.keyword && prevProps.keyword!==this.state.keyword ){
   this.getEntries(this.state.keyword)
-
-
     }
 }
 
@@ -78,8 +101,10 @@ render() {
        return <p>Loading ...</p>;
      }
 
-    return (
-    <FormComponent getKeyword={this.getKeyword} clicked={this.clicked} entries={entries} />
+    return (<div>
+    <FormComponent getKeyword={this.timeout} getKeyword2={this.timeout2} clicked={this.clicked} entries={entries} />
+
+  </div>
     );
   }
 }
