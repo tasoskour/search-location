@@ -16,12 +16,14 @@ class FormContainer extends Component {
 }
 
 getEntries(props){
-var API = 'http://35.180.182.8/Search?keywords='+this.state.keyword+'&language='+this.state.language+'&limit=5';
+var API = 'http://35.180.182.8/Search?keywords='+this.state.keyword+'&language='+this.state.language+'&limit=20';
   fetch(API)
   .then(response => {
 /*Responses*/
           if(response.status ===400){
-              console.log("failed");  }
+              console.log("failed");
+this.setState({ entries: [], isLoading: false })
+             }
           else if(response.status ===500)
             {  console.log("Server error");
             }
@@ -64,6 +66,7 @@ componentDidUpdate(prevProps, prevState)  {
     }
   if(prevState.keyword!==this.state.keyword && prevProps.keyword!==this.state.keyword ){
   this.getEntries(this.state.keyword)
+
 
     }
 }

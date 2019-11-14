@@ -1,6 +1,45 @@
-.div {
-  width: 300px;
-  border: 5px solid green;
-  padding: 50px;
-  margin: 20px;
+
+#userInput{
+
+  width: 30%;
+   border: 3px solid #00B4CC;
+   border-right: none;
+   padding: 5px;
+   height: 20px;
+   border-radius: 5px 0 0 5px;
+   outline: none;
+   color: #9DBFAF;
+   font-size:24px;
+}
+#userInput:focus{
+  color: #00B4CC;
+}
+#button{
+  width: 140px;
+ height: 36px;
+ border: 1px solid #00B4CC;
+ background: #00B4CC;
+ text-align: center;
+ color: #fff;
+ border-radius: 0 5px 5px 0;
+ cursor: pointer;
+ font-size: 20px;
+
+}
+.form{
+
+}
+.ulist {
+  list-style-type:none;
+  padding:15px;
+  margin: 0px;
+}
+.li {
+  background-color: inherit;
+
+  border-style: inset;
+   border-width: 5px;
+  padding: 5px;
+  margin-left: 0px;
+  cursor: pointer;
 }
