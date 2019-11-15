@@ -7,7 +7,7 @@ class FormContainer extends Component {
     this.state = {
       entries: [],
       isLoading: false,
-      keyword:"",
+      keyword:"noyl",
       language:"en",
       timeout:null
     };
@@ -25,14 +25,14 @@ var API = 'http://35.180.182.8/Search?keywords='+this.state.keyword+'&language='
   .then(response => {
 /*Responses*/
           if(response.status ===400){
-              console.log("failed");
+              console.log("failed "+this.state.keyword+" "+this.state.language);
 this.setState({ entries: [], isLoading: false })
              }
           else if(response.status ===500)
             {  console.log("Server error");
             }
           else if(response.status ===200){
-              console.log("Success");
+              console.log("Success:"+this.state.keyword+" "+this.state.language);
             }
       return  (response.json())
         })
@@ -42,31 +42,33 @@ this.setState({ entries: [], isLoading: false })
   }
 
 getKeyword() {
-
+        this.getLanguage();
         this.setState({keyword:document.getElementById("userInput").value});
-console.log("KEYWORD")
-          if (/^[a-zA-Z]+$/.test(document.getElementById("userInput").value))
-           {
-     this.setState({language:"en"})
-  }
-  //Greek
-  else if(/^[A-Za-z\u0391-\u03C9]*$/.test(document.getElementById("userInput").value))
-  {
-  this.setState({language:"el"})
-  }
-          console.log(this.state.language);
-          return false}
+         console.log("KEYWORD")
 
+          return false}
+getLanguage(){
+  if (/^[a-zA-Z]+$/.test(document.getElementById("userInput").value))
+   {
+this.setState({language:"en"})
+}
+//Greek
+else if(/^[A-Za-z\u0391-\u03C9]*$/.test(document.getElementById("userInput").value))
+{
+this.setState({language:"el"})
+}
+  console.log(this.state.language);
+
+}
 timeout(){
-var timeout=setTimeout(
-  this.getKeyword,3000);
-  console.log("Timer:"+timeout)
-this.setState({timeout:timeout})
-  return false
+  var timeout=setTimeout(this.getKeyword,3000);
+    console.log("Timer:"+timeout)
+      this.setState({timeout:timeout})
+      return false
           }
 
 clearTimer(){
-clearTimeout(this.state.timeout);
+  clearTimeout(this.state.timeout);
 
             return false}
 
@@ -79,6 +81,7 @@ clicked(){
   }
   componentDidMount(){
     document.getElementById("button").disabled=true;
+
   }
 
 componentDidUpdate(prevProps, prevState)  {
@@ -89,7 +92,9 @@ componentDidUpdate(prevProps, prevState)  {
   else {
 
     }
-  if(prevState.keyword!==this.state.keyword && prevProps.keyword!==this.state.keyword ){
+  if((prevState.keyword!==this.state.keyword && prevProps.keyword!==this.state.keyword)
+  ||
+  (prevState.keyword==="noyl"&& prevProps.keyword==="noyl")){
   this.getEntries(this.state.keyword)
     }
 }
