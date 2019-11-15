@@ -4,7 +4,7 @@ function FormContainer(props){
 
   return (
   <div>
-  <input type="text" id="userInput" onChange={props.getKeyword} onKeyDown={props.getKeyword2} autoComplete="off"/>
+  <input type="text" id="userInput" onChange={props.getKeywordTimer} onKeyDown={props.clearTimer} autoComplete="off"/>
   <button type="button" id="button" onClick={props.clicked} >Submit</button>
 
 <form className="form">

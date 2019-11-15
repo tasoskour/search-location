@@ -1,6 +1,5 @@
 
 #userInput{
-
   width: 50%;
    border: 3px solid #00B4CC;
    border-right: none;
@@ -12,12 +11,12 @@
    font-size:22px;
    padding:0px;
    margin-left:250px;
-
 }
+
 #userInput:focus{
   color: #00B4CC;
-
 }
+
 #button{
   width: 140px;
  height: 39px;
@@ -41,7 +40,6 @@ padding:auto;
 }
 .li {
   background-color: inherit;
-
   border-style: inset;
    border-width: 5px;
   padding: 5px;
