@@ -27,22 +27,20 @@ getEntries(props){
         .then(response => {
           /*Responses*/
           if(response.status ===400)
-            { console.log("failed "+this.state.keyword+" "+this.state.language);
+            { console.log("Failed: Error 400");
               this.setState({ entries: [], isLoading: false }) }
           else if(response.status ===500)
             {  console.log("Server error");}
           else if(response.status ===200)
-            {  console.log("Success:"+this.state.keyword+" "+this.state.language);}
+            {  console.log("Success:");}
       return  (response.json());
         })
-        .then(data => {console.log(this.state.entries)
-        return(this.setState({ entries: data.entries, isLoading: false }))
-      });}
+        .then(data => (this.setState({ entries: data.entries, isLoading: false }))
+      );}
 
 getKeyword() {
           this.getLanguage()
           this.setState({keyword:document.getElementById("userInput").value});
-          console.log("KEYWORD:"+this.state.keyword)
           return false}
 
 getLanguage(){
@@ -51,13 +49,11 @@ getLanguage(){
    {this.setState({language:"en"})}
    /*Greek*/
   else if(/^[A-Za-z\u0391-\u03C9]*$/.test(document.getElementById("userInput").value))
-   {this.setState({language:"el"})}
-  console.log(this.state.language);  }
+   {this.setState({language:"el"})} }
 
 timeout(){
   if(document.getElementById("userInput").value.length>1){
-    var timer=setTimeout(this.getKeyword,300);
-    console.log("Timer:"+timer)
+    var timer=setTimeout(this.getKeyword,200);
         this.setState({timer:timer})
     }
   else{this.setState({ entries:[ ], keyword:document.getElementById("userInput").value});}
