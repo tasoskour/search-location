@@ -4,35 +4,40 @@
   width: 50%;
    border: 3px solid #00B4CC;
    border-right: none;
-   padding: 5px;
-   height: 20px;
+   padding: 0px;
+   height: 33px;
    border-radius: 5px 0 0 5px;
    outline: none;
    color: #9DBFAF;
-   font-size:24px;
+   font-size:22px;
+   padding:0px;
+   margin-left:250px;
+
 }
 #userInput:focus{
   color: #00B4CC;
+
 }
 #button{
   width: 140px;
- height: 36px;
- border: 1px solid #00B4CC;
+ height: 39px;
+ border: 0px solid #00B4CC;
  background: #00B4CC;
  text-align: center;
- color: #fff;
+ color: #000;
  border-radius: 0 5px 5px 0;
  cursor: pointer;
  font-size: 20px;
-
+margin-top:200px;
+padding:auto;
 }
 .form{
 
 }
 .ulist {
   list-style-type:none;
-  padding:15px;
-  margin: 0px;
+  padding:0px;
+  margin:150px;
 }
 .li {
   background-color: inherit;

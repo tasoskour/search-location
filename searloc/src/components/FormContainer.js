@@ -8,14 +8,14 @@ class FormContainer extends Component {
       entries: [],
       isLoading: false,
       keyword:"",
-      language:" ",
+      language:"en",
       timeout:null
     };
     this.getEntries=this.getEntries.bind(this)
     this.getKeyword = this.getKeyword.bind(this);
     this.clicked=this.clicked.bind(this);
     this.timeout=this.timeout.bind(this);
-    this.timeout2=this.timeout2.bind(this);
+    this.clearTimer=this.clearTimer.bind(this);
 
 }
 
@@ -65,7 +65,7 @@ this.setState({timeout:timeout})
   return false
           }
 
-timeout2(){
+clearTimer(){
 clearTimeout(this.state.timeout);
 
             return false}
@@ -102,7 +102,7 @@ render() {
      }
 
     return (<div>
-    <FormComponent getKeyword={this.timeout} getKeyword2={this.timeout2} clicked={this.clicked} entries={entries} />
+    <FormComponent getKeyword={this.timeout} getKeyword2={this.clearTimer} clicked={this.clicked} entries={entries} />
 
   </div>
     );
