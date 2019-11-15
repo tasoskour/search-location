@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+
 import FormComponent from './FormComponent'
+import {clicked} from './funcs/clicked'
+import {resNum} from './native/getResNum'
+
 class FormContainer extends Component {
   constructor(props) {
     super(props);
@@ -13,14 +17,14 @@ class FormContainer extends Component {
     };
     this.getEntries=this.getEntries.bind(this)
     this.getKeyword = this.getKeyword.bind(this);
-    this.clicked=this.clicked.bind(this);
+
     this.timeout=this.timeout.bind(this);
     this.clearTimer=this.clearTimer.bind(this);
 
 }
 
 getEntries(props){
-var API = 'http://35.180.182.8/Search?keywords='+this.state.keyword+'&language='+this.state.language+'&limit=20';
+var API = 'http://35.180.182.8/Search?keywords='+this.state.keyword+'&language='+this.state.language+'&limit='+resNum;
   fetch(API)
   .then(response => {
 /*Responses*/
@@ -42,9 +46,9 @@ this.setState({ entries: [], isLoading: false })
   }
 
 getKeyword() {
-        this.getLanguage();
+        this.getLanguage()
         this.setState({keyword:document.getElementById("userInput").value});
-         console.log("KEYWORD")
+         console.log("KEYWORD:"+this.state.keyword)
 
           return false}
 getLanguage(){
@@ -61,24 +65,23 @@ this.setState({language:"el"})
 
 }
 timeout(){
-  var timeout=setTimeout(this.getKeyword,3000);
+  if(document.getElementById("userInput").value.length>1){
+
+    var timeout=setTimeout(this.getKeyword,300);
     console.log("Timer:"+timeout)
-      this.setState({timeout:timeout})
+        this.setState({timeout:timeout})
       return false
-          }
+    }
+else{
+  this.setState({ entries:[ ], keyword:document.getElementById("userInput").value});
+}}
 
 clearTimer(){
   clearTimeout(this.state.timeout);
 
             return false}
 
-clicked(){
-    var text=document.getElementById("userInput").value
-  var URL="https://www.google.com/search?q="+text
-  window.open(URL);
 
-  return false;
-  }
   componentDidMount(){
     document.getElementById("button").disabled=true;
 
@@ -107,7 +110,7 @@ render() {
      }
 
     return (<div>
-    <FormComponent getKeyword={this.timeout} getKeyword2={this.clearTimer} clicked={this.clicked} entries={entries} />
+    <FormComponent getKeyword={this.timeout} getKeyword2={this.clearTimer} clicked={clicked} entries={entries} />
 
   </div>
     );

@@ -13,7 +13,6 @@ function FormContainer(props){
   (
     <li id={entry.name} className="li" key={entry.name} onClick={()=>{
       document.getElementById("userInput").value=entry.name
-
   }}
 onMouseOver={()=>  document.getElementById(entry.name).style.backgroundColor="red"}
 onMouseOut={()=> { document.getElementById(entry.name).style.backgroundColor="white"
