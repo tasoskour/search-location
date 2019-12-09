@@ -48,12 +48,12 @@ getLanguage(){
   if (/^[a-zA-Z]+$/.test(document.getElementById("userInput").value))
    {this.setState({language:"en"})}
    /*Greek*/
-  else if(/^[A-Za-z\u0391-\u03C9]*$/.test(document.getElementById("userInput").value))
+  else if(/^[\u0391-\u03C9]*$/.test(document.getElementById("userInput").value))
    {this.setState({language:"el"})} }
 
 timeout(){
   if(document.getElementById("userInput").value.length>1){
-    var timer=setTimeout(this.getKeyword,200);
+    var timer=setTimeout(this.getKeyword,300);
         this.setState({timer:timer})
     }
   else{this.setState({ entries:[ ], keyword:document.getElementById("userInput").value});}

@@ -61,12 +61,13 @@ font-family: "Georgia";
 }
 .li {
   width:50%;
-
   background-color: lightgrey;
   margin-left:250px;
-
   border-style: inset;
   border-width: 1px;
   padding: 1px;
   cursor: pointer;
+}
+li:hover {
+  background-color: red;
 }
